@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body {background: white}
+        #tambourine {position: absolute;left: 25%; right: 25%; height: 100%;}
+        #tambourineBg{ background: white url("images/tambourine.jpg") center center no-repeat; position: absolute;width: 100%;height: 100%; background-size: contain }
+    </style>
+</head>
+
+<body>
+<div id="tambourineBg"></div>
+<div id="tambourine"></div>
+
+<audio id="audio">
+  <source src="audio/Tambourine Sample.wav" type="audio/wav" />
+  Your browser does not support the audio tag.
+</audio>
+<script type="text/javascript">
+
+    var audioElement = document.getElementById("audio"),
+          tambourine = document.getElementById("tambourine"),
+          track1 = [audioElement,audioElement];
+    for (audio in track1)
+    {
+      console.log(audio.name);
+    }
+    tambourine.onclick = function(){
+        audioElement.currentTime = 0;
+        audioElement.play();
+    }
+
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function( event ) {
+        //alpha: rotation around z-axis
+        var rotateDegrees = event.alpha;
+        //gamma: left to right
+        var leftToRight = event.gamma;
+        //beta: front back motion
+        var frontToBack = event.beta;
+        handleOrientationEvent( frontToBack, leftToRight, rotateDegrees );
+        }, false);
+    }
+
+    var handleOrientationEvent = function( frontToBack, leftToRight, rotateDegrees ){
+        console.log("frontToBack",frontToBack);
+        console.log("leftToRight",leftToRight);
+        console.log("rotateDegrees",rotateDegrees);
+    };
+
+</script>
+</body>
+</html>
